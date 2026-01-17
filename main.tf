@@ -22,7 +22,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "demo-vpc"
+    Name = "demo-vpc1"
   }
 }
 
