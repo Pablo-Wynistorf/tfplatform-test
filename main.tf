@@ -22,7 +22,8 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "demo-vpc1"
+    Name = "${var.ENV}-demo-vpc1"
+    ENV  = var.ENV
   }
 }
 
@@ -33,7 +34,8 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "demo-igw"
+    Name = "${var.ENV}-demo-igw"
+    ENV  = var.ENV
   }
 }
 
@@ -53,7 +55,8 @@ resource "aws_subnet" "public" {
   availability_zone       = data.aws_availability_zones.available.names[count.index]
 
   tags = {
-    Name = "demo-public-${count.index + 1}"
+    Name = "${var.ENV}-demo-public-${count.index + 1}"
+    ENV  = var.ENV
   }
 }
 
@@ -64,7 +67,8 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "demo-public-rt"
+    Name = "${var.ENV}-demo-public-rt"
+    ENV  = var.ENV
   }
 }
 
